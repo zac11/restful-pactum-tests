@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  pactum-tests:
+    container_name: pactum-tests
+    build:
+      context: .
+      dockerfile: Dockerfile
+  
