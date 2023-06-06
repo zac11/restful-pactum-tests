@@ -7,7 +7,9 @@
     "test": "mocha ./tests/restful-booker/*.js --reporter spec --reporter mochawesome --timeout 5000"
   },
   "keywords": [
-    "Pactum"
+    "Pactum",
+    "API-Tests",
+    "apitesting"
   ],
   "author": "Rahul Yadav <ydv.rahul09@gmail.com>",
   "license": "ISC",
