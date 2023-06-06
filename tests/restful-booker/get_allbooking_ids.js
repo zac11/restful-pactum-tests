@@ -5,7 +5,9 @@ const { expect } = require("chai")
 const baseURL = process.env.API_BASE_URL ?? 'http://localhost:3001';
 request.setBaseUrl(baseURL);
 
-
+/**
+ * This is an example of GET request
+ */
 describe(' Get all the booking ids and tests for that',()=>{
     it('tests the API is working ', async()=>{
         await spec()
