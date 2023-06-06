@@ -34,7 +34,6 @@ describe('Update an existing booking', ()=>{
             "password" : "password123"
         })
         .expectStatus(200)
-        .inspect()
         .stores("auth-token","token");
     });
 
@@ -42,7 +41,6 @@ describe('Update an existing booking', ()=>{
         await spec()
         .get('/booking')
         .stores('first-id', '[0].bookingid')
-        .inspect();
     });
 
     it('updates the id that is fetched', async()=>{
@@ -58,6 +56,5 @@ describe('Update an existing booking', ()=>{
         .withJson({
             '@DATA:TEMPLATE@': 'Update',  
         })
-        .inspect()
     });
 })

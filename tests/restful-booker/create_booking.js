@@ -7,6 +7,10 @@ request.setBaseUrl(baseURL);
 
 const { faker, fa } = require('@faker-js/faker');
 
+
+/**
+ * This is an example of POST request
+ */
 describe(' Create a new booking', ()=>{
     it('creates a new booking', async ()=>{
       stash.addDataTemplate({
