@@ -2,7 +2,7 @@ const { spec, request, stash } = require('pactum');
 require('dotenv').config();
 const { expect } = require("chai")
 
-const baseURL = process.env.API_BASE_URL ?? 'http://localhost:3001';
+const baseURL = process.env.BASE_URL ?? 'http://localhost:3001';
 request.setBaseUrl(baseURL);
 
 const { faker, fa } = require('@faker-js/faker');

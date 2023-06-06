@@ -4,7 +4,7 @@
   "description": "Restful Booker Tests using PactumJS",
   "main": "index.js",
   "scripts": {
-    "test": "mocha ./tests/restful-booker/*.js --reporter spec --reporter mochawesome --timeout 5000"
+    "test": "NODE_ENV=CI mocha ./tests/restful-booker/*.js --reporter spec --reporter mochawesome --timeout 5000"
   },
   "keywords": [
     "Pactum",
