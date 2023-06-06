@@ -34,7 +34,6 @@ describe(' Create a new booking', ()=>{
         .withJson({
             '@DATA:TEMPLATE@': 'NewBooking',
         })
-        .inspect()
         .expectStatus(200)
     });
 })

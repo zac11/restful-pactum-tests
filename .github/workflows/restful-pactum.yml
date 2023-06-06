@@ -1,0 +1,39 @@
+name: Restful Booker API tests with Pactum
+
+# Controls when the workflow will run
+on:
+
+  workflow_dispatch:
+  # Triggers the workflow on push or pull request events 
+  push:
+    branches:
+      - main
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "deploy_pactum_tests"
+  restful-booker-tests:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Start restful booker service
+      run: docker-compose -f ./docker-compose.startup.yml up -d
+
+      - name: Pull images for Docker
+        run: docker-compose -f docker-compose.tests.yml pull
+
+      - name: Build docker images
+        run: docker-compose -f docker-compose.tests.yml build
+
+      - name: Run the tests
+        run: docker-compose -f docker-compose.tests.yml up --abort-on-container-exit --exit-code-from pactum-tests
+
+      - if: always()
+        name: Upload the e2e test results
+        uses: actions/upload-artifact@v3.1.2
+        with:
+          name: pactum_reports
+          path: /app/mochawesome-report/
