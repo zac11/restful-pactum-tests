@@ -8,20 +8,18 @@ request.setBaseUrl(baseURL);
 const { faker, fa } = require('@faker-js/faker');
 
 /**
- * This is an example of a PUT request
+ * This is an example of a PATCH request
  */
 describe('Update an existing booking', ()=>{
 
+    /**
+     * We'll only create three fake data points for patch request
+     */
     stash.addDataTemplate({
-        "Update":{
+        "PartialUpdate":{
             "firstname": faker.person.firstName(),
             "lastname": faker.person.lastName(),
             "totalprice": faker.finance.amount({ min: 100, max: 5000 }),
-            "depositpaid": faker.datatype.boolean({ probability: 0.3 }),
-            "bookingdates":{
-                "checkin": faker.date.soon({ days: 10 }),
-                "checkout": faker.date.soon({ days: 25 })
-            } 
         }
     });
 
@@ -38,25 +36,25 @@ describe('Update an existing booking', ()=>{
         .stores("auth-token","token");
     });
 
-    it('gets the list of the bookings and fetches first id ', async()=>{
+    it('gets the list of the bookings and fetches third id ', async()=>{
         await spec()
         .get('/booking')
-        .stores('first-id', '[0].bookingid')
+        .stores('third-id', '[3].bookingid')
         .inspect();
     });
 
-    it('updates the id that is fetched', async()=>{
+    it('partially the id that is fetched', async()=>{
         await spec()
-        .put('/booking/{id}')
+        .patch('/booking/{id}')
         .withHeaders({
             "Content-Type": "application/json",
             "Accept": "application/json",
             "cookie": `token=$S{auth-token}`
             
         })
-        .withPathParams('id', '$S{first-id}')
+        .withPathParams('id', '$S{third-id}')
         .withJson({
-            '@DATA:TEMPLATE@': 'Update',  
+            '@DATA:TEMPLATE@': 'PartialUpdate',  
         })
         .inspect()
     });

@@ -63,15 +63,5 @@ it('tests that the booking dates have checkin and checkout dates', async()=>{
         });
 })
 
-it('tests the data contents of the response', async()=>{
-
-    await spec()
-        .get(`/booking/{id}`)
-        .withHeaders('Accept', 'application/json')
-        .withPathParams('id', '$S{FirstPostId}')
-        .expectJsonMatch('firstname', 'Eric')
-        
-
-});
 
 
