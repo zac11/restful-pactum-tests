@@ -21,7 +21,6 @@ describe('Deletes a booking id', ()=>{
             "password" : "password123"
         })
         .expectStatus(200)
-        .inspect()
         .stores("auth-token","token");
     });
 
@@ -29,7 +28,6 @@ describe('Deletes a booking id', ()=>{
         await spec()
         .get('/booking')
         .stores('fifth-id', '[5].bookingid')
-        .inspect();
     });
 
     it('deletes that booking id', async()=>{
@@ -40,7 +38,6 @@ describe('Deletes a booking id', ()=>{
         })
         .withPathParams('id', '$S{fifth-id}')
         .expectStatus(201)
-        .inspect()
     });
 
     it(' validates that the id is now deleted', async()=>{
@@ -48,7 +45,6 @@ describe('Deletes a booking id', ()=>{
         .get('/booking/{id}')
         .withPathParams('id', '$S{fifth-id}')
         .expectStatus(404)
-        .inspect()
     })
 
 
