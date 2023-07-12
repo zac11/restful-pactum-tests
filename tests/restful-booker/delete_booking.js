@@ -2,7 +2,14 @@ const { spec, request, stash } = require('pactum');
 require('dotenv').config();
 const { expect } = require("chai")
 
-const baseURL = process.env.API_BASE_URL ?? 'http://localhost:3001';
+const isCI = process.env.CI;
+if(isCI){
+    const baseURL = 'https://restful-booker.herokuapp.com';
+    console.log(`${baseURL}`)
+}else{
+    const baseURL = 'http://localhost:3001';
+    console.log(`${baseURL}`)
+}
 request.setBaseUrl(baseURL);
 
 
