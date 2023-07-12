@@ -41,5 +41,5 @@ To run all the tests in docker container follow the following steps
 
 ## Run in CI
 
-This uses Github Actions to run the tests. A GA workflow file is present in the `.github/workflows` directory. 
+[In Progress] This uses Github Actions to run the tests. A GA workflow file is present in the `.github/workflows` directory. 
 
